@@ -1,0 +1,135 @@
+<h5>
+  <b>Interpolation binding</b>
+</h5>
+
+<!--We can use interpolation in attributes also.-->
+<p>My current hero is {{currentHero.name}}</p>
+
+<h3>
+    <!--We can write some simple expressions in interpolation bindings. 
+      Angular can evaluate that.-->
+    <img id="heroImg" src="{{heroImgUrl}}" style="height:95px">
+  
+    <!--We can call component functions from interpolation bindings.-->
+    <img id="heroImg" src="./assets/images/hero.jpg" style="height:95px">
+  </h3>
+
+  <!--We can write some simple expressions in interpolation bindings. Angular can evaluate that. -->
+  <p>The sum of 1 + 1 is {{1 + 1}}</p>
+  
+  <!--We can call component functions from interpolation bindings.-->
+  <p>The sum of 1 + 1 is not {{1 + 1 + getVal()}}</p>
+
+<!-- Script tag will be removed while building -->
+<script>
+  alert('test');
+</script>
+
+<hr>
+
+<h5>
+  <b>Property Binding</b>
+</h5>
+
+<img [src]="heroImgUrl" alt="heroImgUrl" style="height:50px">
+<br><br>
+
+<button [disabled]="formNotChanged">cancel</button>
+<br><br>
+
+<div [ngClass]="classConditions">[ngClass] binding to the classes Property</div>
+<br>
+
+
+<app-hero-detail [hero]="currentHero"></app-hero-detail>
+<br><br>
+<button (click)="updateHero()">Update Hero</button>
+<br><br>
+
+<h6>Using function call in binding</h6>
+<img src="{{getHeroImg()}}" alt="getHeroImg" style="height:50px">
+<img [src]="getHeroImg()" alt="getHeroImg" style="height:50px">
+
+<!-- Here 'hero' property is initialised with 'currentHero' string. 
+  If we use square brackets then only template expression will be evaluated -->
+<app-hero-detail hero="currentHero"></app-hero-detail>
+<br><br>
+
+<h6>Script tags in property bindings:</h6>
+<p><span>"{{evilTitle}}" is the <i>interpolated</i> evil title</span></p>
+<p>"<span [innerHTML]="evilTitle"></span>" is the <i>property bound</i> evil title.</p>
+<hr>
+
+<h6>
+  <b>Attribute, class, and style bindings</b>
+</h6><br>
+
+<h6>Attribut binding</h6>
+<input type="text" value="John" placeholder="Name"/>
+<br><br>
+
+<table class="table table-bordered text-center">
+  <tr>
+    <td colspan="2">One</td>
+  </tr>
+  <td>Three-Four</td>
+  <td>Three-Four</td>
+</table>
+<br><br>
+
+<div>Un-comment below binding to get error</div>
+<table class="table table-bordered text-center">
+    <tr>
+      <!-- <td colspan="{{ noOfColumns }}">One</td> -->
+    </tr>
+    <tr>
+      <td>Three-Four</td>
+      <td>Three-Four</td>
+    </tr>
+</table>
+
+<div>Attribute binding</div>
+<table class="table table-bordered text-center">
+    <tr>
+      <td [attr.colspan]="noOfColumns">One</td>
+    </tr>
+    <td>Three-Four</td>
+    <td>Three-Four</td>
+</table>
+
+<h6>class bindings</h6>
+<div>1. Reset/override all class names with a binding</div>
+<div class="bad curly special" [class]="badCurly">Bad Curly</div>
+<br>
+
+<div>2. Toggle a single class</div>
+<div [class.special]="special">This is special class</div>
+<div [class.special]="!special">This is not special class</div>
+<div [class.very]="special" [class.special]="special">This is a very special class</div>
+<div class="not" [class.very]="special" [class.special]="special">This is not a very special class</div>
+<br>
+
+<div>3. Toggle Multiple classes (ngClass directive)</div>
+<div [ngClass]="classConditions">Multiple class bindings</div>
+<div class="anotherClass" [ngClass]="classConditions">Multiple class bindings dont override other existing classes</div>
+<br>
+
+<h6>Style bindings</h6>
+<button [style.color]="isSpecial ? 'green' : 'red'">Save</button>
+<br><br>
+<button [style.background-color]="canSave ? 'cyan' : 'grey'">Save</button>
+<br><br>
+<button [style.color]="isSpecial ? 'green' : 'red'" [style.background-color]="canSave ? 'cyan': 'grey'">Save</button>
+<br><br>
+<button [style.font-size.px]="isSpecial ? '13' : '21'">Big</button>
+<br><br>
+<button [style.font-size.px]="isSpecial ? '13' : '21'">Camel cased fontSize</button>
+<br><br>
+<div [ngStyle]="currentStyles">Div with ngStyle directive</div>
+<br><hr>
+
+<h6><b>Event Binding</b></h6>
+<button (click)="onSave($event)">Save</button>
+<br><br>
+<input type="text" (keypress)="onSave($event)"/>
+
