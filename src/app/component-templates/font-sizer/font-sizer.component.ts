@@ -7,16 +7,18 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class FontSizerComponent implements OnInit {
 
-  @Input() size: number | string;
+  @Input() size: number;
   @Output() sizeChange = new EventEmitter();
 
 
   dec() {
-    this.sizeChange.emit(parseInt(this.size, 10) - 1);
+    this.size--;
+    this.sizeChange.emit(this.size);
   }
 
   inc() {
-    this.sizeChange.emit(parseInt(this.size, 10) + 1);
+    this.size++;
+    this.sizeChange.emit(this.size);
   }
 
   constructor() {
