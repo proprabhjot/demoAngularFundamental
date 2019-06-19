@@ -160,10 +160,17 @@
 
 <br><hr>
 <h6><b>Template reference variables ( #hero )</b></h6>
-<form (ngSubmit)="onSubmit(heroForm)" ngForm #heroForm="ngForm" id="hero-form">
+<form (ngSubmit)="onSubmit(heroForm)" #heroForm="ngForm" id="hero-form">
   <div class="form-group">
     <label for="name">Phone: {{phoneRef.value}}
-      <input class="form-control" id="phone" name="phone" #phoneRef="ngModel" minlength="10" [(ngModel)]="phone">
+      <input 
+        class="form-control" 
+        required 
+        id="phone" 
+        name="phone" 
+        #phoneRef="ngModel" 
+        minlength="10" 
+        [(ngModel)]="phone">
     </label>
   </div>
 
@@ -181,7 +188,13 @@
   <br><br>
   <div class="form-group">
     <label for="name">
-      <input type="text" class="form-control" name="name" #name="ngModel" required minlength="4" [(ngModel)]="currentHero.name">
+      <input 
+        type="text" 
+        class="form-control" 
+        name="name" 
+        #name="ngModel" 
+        required minlength="4" 
+        [(ngModel)]="currentHero.name">
     </label>
     
     <div><pre>{{ name.errors | json }}</pre></div>
