@@ -10,7 +10,7 @@ export class TemplateSyntaxComponent implements OnInit {
   heroImgUrl = './assets/images/hero.jpg';
 
   currentHero = {
-    name: 'prabhjot',
+    name: 'Prabhjot',
     power: 999
   };
 
@@ -40,6 +40,10 @@ export class TemplateSyntaxComponent implements OnInit {
     'font-size':   this.isSpecial    ? '24px'   : '12px'
   };
 
+  nullHero = null;
+
+  phone = '8324682270'
+
   getVal() {
     return 1;
   }
@@ -65,6 +69,10 @@ export class TemplateSyntaxComponent implements OnInit {
 
   onSave(event) {
     console.log(event);
+  }
+
+  onSubmit(heroForm) {
+    console.log(heroForm);
   }
 
   constructor() { }

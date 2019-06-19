@@ -28,8 +28,8 @@ import { FontSizerComponent } from './font-sizer/font-sizer.component';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ]
 })
 export class ComponentTemplatesModule { }

@@ -133,3 +133,67 @@
 <br><br>
 <input type="text" (keypress)="onSave($event)"/>
 
+<br><br>
+<h6><b>Template Expresssion Operator</b></h6>
+<br>
+<h6>Pipe Operator:</h6>
+<div>Hero name: {{currentHero.name | uppercase}}</div>
+<div><pre>{{currentHero | json }}</pre></div>
+
+<br>
+<h6>Safe Navigation Operator:</h6>
+<div>The null hero's name is {{nullHero?.name}}</div>
+
+
+<br><hr>
+<h6><b>Template Statement</b></h6>
+<div>Template statement allows assignment operator '='</div>
+<div>Hero name: {{currentHero.name}}</div>
+<div>
+    <button (click)="currentHero.name = 'NoorFateh'">Save</button>
+</div>
+<br>
+<div>We can chain the template statements</div> 
+<div>
+  <button (click)="currentHero.name = 'NoorFateh'; onSave($event)">Save</button>
+</div>
+
+<br><hr>
+<h6><b>Template reference variables ( #hero )</b></h6>
+<form (ngSubmit)="onSubmit(heroForm)" ngForm #heroForm="ngForm" id="hero-form">
+  <div class="form-group">
+    <label for="name">Phone: {{phoneRef.value}}
+      <input class="form-control" id="phone" name="phone" #phoneRef="ngModel" minlength="10" [(ngModel)]="phone">
+    </label>
+  </div>
+
+  <div><pre>{{ phoneRef.errors | json }}</pre></div>
+
+  <div *ngIf="phoneRef.invalid">
+      <div *ngIf="phoneRef.errors.required">
+        Phone is required
+      </div> 
+      <div *ngIf="phoneRef.errors.minlength">
+        Phone number should be morethan 9 chars
+      </div>     
+  </div>
+
+  <br><br>
+  <div class="form-group">
+    <label for="name">
+      <input type="text" class="form-control" name="name" #name="ngModel" required minlength="4" [(ngModel)]="currentHero.name">
+    </label>
+    
+    <div><pre>{{ name.errors | json }}</pre></div>
+
+    <div *ngIf="name.invalid">
+        <div *ngIf="name.errors.required">
+          Name is required
+        </div> 
+        <div *ngIf="name.errors.minlength">
+          Name should be morethan 4 chars
+        </div>     
+    </div>
+  </div>
+  <button type="submit" [disabled]="!heroForm.form.valid">Submit</button>
+</form>
